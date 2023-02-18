@@ -1,68 +1,88 @@
+package com.driver;
+
 public class Pizza {
-    private String type;
-    private String category;
-    private boolean extraCheese;
-    private int extraToppings;
-    private boolean paperBag;
-    private int basePrice;
-    private final int VEG_PRICE = 300;
-    private final int NON_VEG_PRICE = 400;
-    private final int EXTRA_CHEESE_PRICE = 80;
-    private final int VEG_TOPPINGS_PRICE = 70;
-    private final int NON_VEG_TOPPINGS_PRICE = 120;
-    private final int PAPER_BAG_PRICE = 20;
 
-    public Pizza(String type, String category) {
-        this.type = type;
-        this.category = category;
-        this.extraCheese = false;
-        this.extraToppings = 0;
-        this.paperBag = false;
-        if (this.category.equals("veg")) {
-            this.basePrice = VEG_PRICE;
-        } else {
-            this.basePrice = NON_VEG_PRICE;
+    private int price;
+    private boolean isVeg;
+    private  int extraCheesePrice = 80 ;
+    private int ExtraToppingsPrice;
+    private int TakeAwayPrice = 20 ;
+    private String bill;
+    private boolean isCheeseAdded;
+    private boolean isToppingsAdded;
+    private boolean isTakeaway;
+    private boolean isBillGenerated;
+    public Pizza(Boolean isVeg){
+
+        this.isVeg = isVeg;
+        isCheeseAdded=false;
+        isToppingsAdded=false;
+        isTakeaway=false;
+        isBillGenerated=false;
+
+        if(isVeg==true)
+        {
+            price=300;
+            ExtraToppingsPrice=70;
+        }
+        else {
+            price=400;
+            ExtraToppingsPrice=120;
+        }
+        bill="Base Price Of The Pizza: "+price+ "\n";
+    }
+
+    public int getPrice(){
+        return this.price;
+    }
+
+    public void addExtraCheese()
+    {
+        // your code goes here
+        if(isCheeseAdded==false) {
+            price = price + extraCheesePrice;
+            isCheeseAdded = true;
         }
     }
 
-    public void addExtraCheese() {
-        if (!extraCheese) {
-            extraCheese = true;
-            basePrice += EXTRA_CHEESE_PRICE;
+    public void addExtraToppings(){
+        // your code goes here
+        if(isToppingsAdded==false) {
+            price = price +ExtraToppingsPrice;
+            isToppingsAdded=true;
+        }
+
+    }
+
+    public void addTakeaway(){
+        // your code goes here
+        if(isTakeaway==false) {
+            price = price + TakeAwayPrice;
+            isTakeaway = true;
         }
     }
 
-    public void addToppings() {
-        if (this.category.equals("veg")) {
-            basePrice += VEG_TOPPINGS_PRICE;
-        } else {
-            basePrice += NON_VEG_TOPPINGS_PRICE;
-        }
-        extraToppings++;
-    }
+    public String getBill(){
+        // your code goes here
+        if(isBillGenerated==false)
+        {
+            isBillGenerated=true;
 
-    public void addPaperBag() {
-        if (!paperBag) {
-            paperBag = true;
-            basePrice += PAPER_BAG_PRICE;
-        }
-    }
 
-    public void printBill() {
-        System.out.println("Base Price Of The Pizza: " + basePrice);
-        if (extraCheese) {
-            System.out.println("Extra Cheese Added: " + EXTRA_CHEESE_PRICE);
-        }
-        if (extraToppings > 0) {
-            if (category.equals("veg")) {
-                System.out.println("Extra Toppings Added: " + (extraToppings * VEG_TOPPINGS_PRICE));
-            } else {
-                System.out.println("Extra Toppings Added: " + (extraToppings * NON_VEG_TOPPINGS_PRICE));
+            if(isCheeseAdded==true)
+            {
+                bill=bill+"Extra Cheese Added: "+extraCheesePrice+ "\n";
             }
+            if(isToppingsAdded==true)
+            {
+                bill=bill+"Extra Toppings Added: "+ExtraToppingsPrice+ "\n";
+            }
+            if(isTakeaway==true)
+            {
+                bill=bill+"Paperbag Added: "+TakeAwayPrice+ "\n";
+            }
+            bill=bill+"Total Price: "+price+ "\n";
         }
-        if (paperBag) {
-            System.out.println("Paperbag Added: " + PAPER_BAG_PRICE);
-        }
-        System.out.println("Total Price: " + basePrice);
+        return this.bill;
     }
 }

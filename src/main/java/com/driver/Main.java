@@ -1,18 +1,18 @@
+package com.driver;
+
 public class Main {
   public static void main(String[] args) {
-    Pizza regularPizza = new Pizza("regular", "veg");
-    regularPizza.addExtraCheese();
-    regularPizza.addToppings();
-    regularPizza.addToppings();
-    regularPizza.addPaperBag();
-    regularPizza.printBill();
+    DeluxePizza dp = new DeluxePizza(true);
+    System.out.println(dp.getPrice());
+    dp.addTakeaway();
+    dp.addExtraCheese();
+    dp.addTakeaway();
+    System.out.println(dp.getBill());
 
-    System.out.println();
-
-    DeluxePizza deluxePizza = new DeluxePizza("non-veg");
-    deluxePizza.addToppings();
-    deluxePizza.addToppings();
-    deluxePizza.addExtraCheese();
-    deluxePizza.printBill();
+    Pizza p = new Pizza(true);
+    p.addExtraCheese();
+    p.addExtraToppings();
+    p.addTakeaway();
+    System.out.println(p.getBill());
   }
 }

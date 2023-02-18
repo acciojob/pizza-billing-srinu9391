@@ -1,7 +1,11 @@
+package com.driver;
+
 public class DeluxePizza extends Pizza {
-    public DeluxePizza(String category) {
-        super("deluxe", category);
-        addExtraCheese();
-        addToppings();
+
+    public DeluxePizza(Boolean isVeg) {
+        super(isVeg);
+        // your code goes here
+        this.addExtraCheese();
+        this.addExtraToppings();
     }
 }
